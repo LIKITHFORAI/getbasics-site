@@ -1,0 +1,4095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light" />
+<meta name="description" content="Basics is a city app for people staying long enough that they don't want to feel like tourists. Piloting in Portland, Oregon.">
+<meta property="og:title" content="Basics — Get the Basics, know the Civics.">
+<meta property="og:description" content="A city app for long-stay travelers, new transplants and digital nomads. Piloting in Portland.">
+<meta property="og:url" content="https://getbasics.app/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%231a1410'/%3E%3Cpath d='M14 11L14 29L22 29Q27 29 27 24.5Q27 21 24 20Q27 19 27 15.5Q27 11 22 11Z' fill='%23f5ecd7'/%3E%3Ccircle cx='31' cy='11' r='4.5' fill='%23d94f2a'/%3E%3C/svg%3E">
+<title>Basics — Get the Basics, know the Civics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,30..100,0..1&family=DM+Mono:wght@300;400;500&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf3e0;
+    --paper: #ffffff;
+    --ink: #0a0806;
+    --ink-soft: #1a1410;
+    --ink-faint: #4a3f30;
+    --rule: #d8c9a3;
+    --tomato: #d94f2a;
+    --terra: #c2410c;
+    --marigold: #e8a93c;
+    --moss: #4a6b3a;
+    --moss-deep: #2f4a25;
+    --sage: #8ba872;
+    --sky: #6b9bb8;
+    --ocean: #2d5f7d;
+    --rain: #8a9aa3;
+    --plum: #6d4a6e;
+    --hot-pink: #d4527a;
+    --butter: #f5dc8a;
+    --mint: #b8d4b0;
+    --pdx-cream: #e6e9df;
+    --pdx-fog: #d4ddc8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+    background: #faf3e0;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--cream) !important;
+    color: var(--ink) !important;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    color-scheme: light;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding: 16px 0;
+    background: var(--cream) !important;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .masthead-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-transform: none;
+  }
+
+  .logo-svg { width: 36px; height: 36px; }
+  .masthead-meta { display: flex; gap: 24px; color: var(--ink-faint); }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0 100px;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .hero-shapes { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+  .blob { position: absolute; border-radius: 50%; filter: blur(70px); }
+  .blob-1 { width: 420px; height: 420px; background: var(--marigold); top: -100px; right: -50px; opacity: 0.28; }
+  .blob-2 { width: 320px; height: 320px; background: var(--moss); bottom: -80px; left: 15%; opacity: 0.14; }
+  .blob-3 { width: 280px; height: 280px; background: var(--sky); top: 40%; right: 28%; opacity: 0.16; }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-top-rule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .hero-top-rule-mid { flex: 1; height: 1px; background: var(--ink); margin: 0 24px; }
+
+  .hero-eyebrow {
+    background: var(--tomato);
+    color: var(--cream);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    font-size: clamp(70px, 13vw, 210px);
+    line-height: 0.85;
+    letter-spacing: -0.045em;
+    margin-bottom: 40px;
+  }
+
+  .hero-title-line2 { display: block; text-indent: 0.8em; }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    color: var(--tomato);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: 0.1em;
+    left: -0.05em;
+    right: -0.05em;
+    height: 0.18em;
+    background: var(--marigold);
+    z-index: -1;
+    border-radius: 100px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .hero-tagline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 580px;
+  }
+
+  .hero-tagline strong {
+    font-weight: 500;
+    color: var(--ink);
+    font-style: italic;
+    background: linear-gradient(180deg, transparent 60%, var(--butter) 60%);
+    padding: 0 4px;
+  }
+
+  .hero-tagline em { color: var(--tomato); font-style: italic; font-weight: 500; }
+
+  .hero-meta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 32px;
+    border-radius: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    position: relative;
+  }
+
+  .hero-meta::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: 10px; bottom: 10px;
+    background: var(--tomato);
+    border-radius: 20px;
+    z-index: -1;
+  }
+
+  .hero-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .hero-meta-block + .hero-meta-block { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(245,236,215,0.15); }
+  .hero-meta-block em { color: var(--marigold); font-style: italic; }
+
+  /* TICKER */
+  .ticker {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 18px 0;
+    overflow: hidden;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    white-space: nowrap;
+    animation: scroll 40s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    font-weight: 300;
+  }
+
+  .ticker-track span { display: inline-flex; align-items: center; gap: 60px; }
+  .ticker-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--marigold); display: inline-block; }
+  .ticker-dot.t { background: var(--tomato); }
+  .ticker-dot.s { background: var(--sky); }
+  .ticker-dot.p { background: var(--hot-pink); }
+  .ticker-dot.m { background: var(--moss); }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section.editorial {
+    padding: 100px 0;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    background: var(--cream);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label-num {
+    background: var(--ink);
+    color: var(--marigold);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .section-heading {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 5.8vw, 84px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin-bottom: 56px;
+    max-width: 1000px;
+    color: var(--ink);
+  }
+
+  .section-heading em { font-style: italic; color: var(--tomato); font-variation-settings: "WONK" 1; }
+
+  /* PROBLEM */
+  .problem-section { background: var(--paper) !important; }
+  .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .problem-cell {
+    padding: 40px 36px;
+    border-radius: 24px;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+  .problem-cell:hover { transform: translateY(-4px); }
+  .problem-cell.c1 { background: var(--sky); color: var(--ink); }
+  .problem-cell.c2 { background: var(--moss); color: var(--cream); }
+  .problem-cell.c3 { background: var(--hot-pink); color: var(--cream); }
+  .problem-cell.c4 { background: var(--marigold); color: var(--ink); }
+  .problem-cell-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.75;
+  }
+  .problem-cell-text {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+  .problem-cell-text em { font-style: italic; font-weight: 500; }
+  .problem-cell-bigletter {
+    position: absolute;
+    bottom: -40px; right: -10px;
+    font-family: 'Fraunces', serif;
+    font-size: 200px;
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.15;
+    font-variation-settings: "WONK" 1;
+  }
+
+  /* LAYERS */
+  .layers-section { background: var(--cream) !important; }
+  .layers { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+  .layer {
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    border: 2px solid var(--ink);
+  }
+  .layer:hover { transform: translateY(-6px); }
+  .layer-01 { grid-column: 1 / 5; background: var(--butter); min-height: 240px; }
+  .layer-02 { grid-column: 5 / 13; background: var(--tomato); color: var(--cream); min-height: 240px; }
+  .layer-03 { grid-column: 1 / 8; background: var(--ocean); color: var(--cream); min-height: 260px; }
+  .layer-04 { grid-column: 8 / 13; background: var(--mint); min-height: 260px; }
+  .layer-05 { grid-column: 1 / 6; background: var(--hot-pink); color: var(--cream); min-height: 240px; }
+  .layer-06 { grid-column: 6 / 13; background: var(--ink); color: var(--cream); min-height: 240px; }
+  .layer-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--ink);
+    color: var(--cream);
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .layer-02 .layer-num, .layer-03 .layer-num, .layer-05 .layer-num, .layer-06 .layer-num { background: var(--marigold); color: var(--ink); }
+  .layer-name {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .layer-name em { font-style: italic; }
+  .layer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: 0.75;
+  }
+  .layer-desc { font-size: 15px; line-height: 1.6; max-width: 480px; }
+  .layer-desc strong {
+    font-weight: 600;
+    background: rgba(255,255,255,0.2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .layer-01 .layer-desc strong, .layer-04 .layer-desc strong { background: rgba(26,20,16,0.1); }
+  .layer-deco {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 160px;
+    font-weight: 300;
+    opacity: 0.13;
+    line-height: 1;
+    font-variation-settings: "WONK" 1;
+  }
+
+  /* ============ THE APP — MULTI-SCREEN SHOWCASE ============ */
+  .app-section {
+    padding: 100px 0;
+    background: var(--paper);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-section::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: var(--marigold);
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.25;
+    top: 10%;
+    right: -150px;
+  }
+
+  .app-intro { position: relative; z-index: 2; margin-bottom: 60px; }
+  .app-intro-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+
+  .app-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ink);
+    padding: 24px 28px;
+    background: var(--cream);
+    border-radius: 16px;
+    border: 2px solid var(--ink);
+    position: relative;
+  }
+
+  .app-quote::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px; right: 8px; bottom: 8px;
+    background: var(--tomato);
+    border-radius: 16px;
+    z-index: -1;
+  }
+
+  .app-quote-attr {
+    display: block;
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* SCREEN GRID — 6 phones */
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .screen-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .screen-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 20px;
+    color: var(--ink);
+    text-align: center;
+    padding: 4px 12px;
+    background: var(--marigold);
+    border-radius: 100px;
+    font-weight: 600;
+  }
+
+  .screen-caption {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    text-align: center;
+    margin-top: 10px;
+    max-width: 240px;
+  }
+
+  .phone {
+    width: 280px;
+    height: 600px;
+    border-radius: 40px;
+    border: 9px solid var(--ink);
+    box-shadow: 0 24px 50px -12px rgba(26,20,16,0.35), inset 0 0 0 2px rgba(0,0,0,0.06);
+    overflow: hidden;
+    background: var(--pdx-cream);
+    position: relative;
+  }
+
+  .phone::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 22px;
+    background: var(--ink);
+    border-radius: 0 0 14px 14px;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(170deg, #e6e9df 0%, #d4ddc8 100%);
+    color: #2a3825;
+    font-size: 11px;
+  }
+
+  /* Status bar */
+  .ps-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 22px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+
+  /* App header */
+  .ps-header {
+    padding: 0 18px 14px;
+    border-bottom: 1px solid rgba(42,56,37,0.2);
+  }
+
+  .ps-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .ps-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  .ps-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--moss-deep);
+    display: block;
+  }
+
+  .ps-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--moss-deep);
+    position: relative;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .ps-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 10px; height: 10px;
+    background: var(--marigold);
+    border-radius: 50%;
+    border: 2px solid var(--pdx-cream);
+  }
+
+  .ps-meta-strip {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .ps-meta-strip span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ps-meta-strip span::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--moss-deep);
+    border-radius: 50%;
+  }
+
+  /* Scrollable content */
+  .ps-body {
+    flex: 1;
+    overflow: hidden;
+    padding: 14px 16px;
+  }
+
+  /* Tab bar */
+  .ps-tabbar {
+    border-top: 1px solid rgba(42,56,37,0.2);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 8px 14px;
+    background: rgba(230,233,223,0.95);
+  }
+
+  .ps-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    flex: 1;
+    opacity: 0.65;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+  }
+
+  .ps-tab.active { opacity: 1; font-weight: 600; color: var(--tomato); }
+  .ps-tab-icon { width: 18px; height: 18px; }
+
+  /* ============ SCREEN 1: HOME / TODAY ============ */
+  .ps-greeting {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--moss-deep);
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    border-left: 3px solid var(--tomato);
+  }
+
+  .ps-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss-deep);
+    margin: 14px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+  }
+
+  .ps-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(42,56,37,0.2);
+  }
+
+  .ps-card {
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ps-card-thumb {
+    width: 50px; height: 50px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--moss);
+  }
+
+  .ps-card-body { flex: 1; min-width: 0; }
+  .ps-card-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tomato);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .ps-card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .ps-card-meta { font-size: 9px; opacity: 0.7; }
+
+  /* ============ SCREEN 2: MAP VIEW ============ */
+  .ps-map-screen { background: #d8dfd0; }
+  .ps-map {
+    flex: 1;
+    position: relative;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(74, 107, 58, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(107, 155, 184, 0.2) 0%, transparent 50%),
+      linear-gradient(135deg, #e0e5d4 0%, #cbd6bd 100%);
+    overflow: hidden;
+  }
+
+  /* Map streets */
+  .ps-map-streets {
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+  }
+
+  /* River (Willamette) */
+  .ps-map-river {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 40%;
+    width: 28px;
+    background: linear-gradient(90deg, rgba(107,155,184,0.4), rgba(45,95,125,0.5), rgba(107,155,184,0.4));
+    transform: skewX(-5deg);
+  }
+
+  /* Map pins */
+  .ps-pin {
+    position: absolute;
+    width: 28px; height: 28px;
+    background: var(--tomato);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid var(--cream);
+    box-shadow: 0 4px 10px rgba(26,20,16,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-family: 'Fraunces', serif;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .ps-pin span { transform: rotate(45deg); }
+
+  .ps-pin.coffee { background: var(--moss-deep); }
+  .ps-pin.food { background: var(--tomato); }
+  .ps-pin.bar { background: var(--plum); }
+  .ps-pin.outdoor { background: var(--moss); }
+  .ps-pin.shop { background: var(--ocean); }
+
+  .ps-pin.active {
+    width: 38px; height: 38px;
+    background: var(--marigold);
+    color: var(--ink);
+    z-index: 5;
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(-45deg) translateY(0); }
+    50% { transform: rotate(-45deg) translateY(-4px); }
+  }
+
+  .ps-map-search {
+    position: absolute;
+    top: 12px; left: 12px; right: 12px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 100px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .ps-map-search-icon { width: 12px; height: 12px; color: var(--moss-deep); }
+
+  .ps-map-filter-row {
+    position: absolute;
+    top: 50px; left: 12px; right: 12px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .ps-filter-chip {
+    background: rgba(255,255,255,0.95);
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--moss-deep);
+    white-space: nowrap;
+    border: 1px solid rgba(42,56,37,0.15);
+  }
+
+  .ps-filter-chip.active {
+    background: var(--ink);
+    color: var(--marigold);
+    border-color: var(--ink);
+  }
+
+  /* Map bottom sheet */
+  .ps-map-sheet {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: var(--cream);
+    border-radius: 20px 20px 0 0;
+    padding: 14px;
+    box-shadow: 0 -8px 20px rgba(0,0,0,0.1);
+  }
+
+  .ps-map-sheet-handle {
+    width: 36px; height: 4px;
+    background: var(--rule);
+    border-radius: 100px;
+    margin: 0 auto 10px;
+  }
+
+  .ps-sheet-card {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .ps-sheet-thumb {
+    width: 56px; height: 56px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--moss), var(--moss-deep));
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  .ps-sheet-body { flex: 1; min-width: 0; color: var(--ink); }
+
+  .ps-sheet-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tomato);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .ps-sheet-title {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+
+  .ps-sheet-meta {
+    font-size: 9.5px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+  .ps-sheet-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .ps-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 100px;
+    background: rgba(74,107,58,0.15);
+    color: var(--moss-deep);
+    font-weight: 500;
+  }
+
+  .ps-tag.hot { background: var(--tomato); color: var(--cream); }
+
+  /* ============ SCREEN 3: CODE CARD ============ */
+  .ps-code-screen { background: var(--ink); color: var(--cream); }
+  .ps-code-screen .ps-header { border-bottom-color: rgba(245,236,215,0.15); }
+  .ps-code-screen .ps-title em { color: var(--marigold); }
+  .ps-code-screen .ps-avatar { background: var(--tomato); color: var(--cream); }
+  .ps-code-screen .ps-avatar::after { border-color: var(--ink); }
+  .ps-code-screen .ps-section-label { color: var(--marigold); }
+  .ps-code-screen .ps-section-label::after { background: rgba(245,236,215,0.15); }
+  .ps-code-screen .ps-meta-strip { color: var(--marigold); }
+  .ps-code-screen .ps-meta-strip span::before { background: var(--marigold); }
+  .ps-code-screen .ps-tabbar { background: rgba(26,20,16,0.95); border-top-color: rgba(245,236,215,0.15); }
+  .ps-code-screen .ps-tab.active { color: var(--marigold); }
+
+  .ps-code-hero {
+    background: var(--tomato);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-code-hero::after {
+    content: '!';
+    position: absolute;
+    bottom: -20px; right: -10px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 120px;
+    line-height: 1;
+    opacity: 0.15;
+    font-weight: 700;
+  }
+
+  .ps-code-rule-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+
+  .ps-code-rule-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .ps-code-rule-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--marigold);
+  }
+
+  .ps-code-rule-sub {
+    font-size: 10px;
+    color: var(--cream);
+    opacity: 0.85;
+    line-height: 1.4;
+  }
+
+  .ps-code-detail {
+    background: rgba(245,236,215,0.08);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .ps-code-detail-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .ps-code-detail strong { color: var(--marigold); font-weight: 500; }
+
+  .ps-code-progress {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .ps-code-progress-dot {
+    flex: 1;
+    height: 3px;
+    background: rgba(245,236,215,0.2);
+    border-radius: 100px;
+  }
+
+  .ps-code-progress-dot.done { background: var(--marigold); }
+  .ps-code-progress-dot.active { background: var(--tomato); }
+
+  /* ============ SCREEN 4: PLACE DETAIL ============ */
+  .ps-place-screen { background: var(--cream); color: var(--ink); }
+  .ps-place-screen .ps-header { border-bottom: none; padding-bottom: 0; }
+  .ps-place-screen .ps-tabbar { background: rgba(245,236,215,0.95); }
+
+  .ps-place-hero {
+    height: 180px;
+    margin: 0 -16px 14px;
+    background: linear-gradient(135deg, var(--moss) 0%, var(--moss-deep) 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+  }
+
+  .ps-place-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(232,169,60,0.3), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(217,79,42,0.2), transparent 40%);
+  }
+
+  .ps-place-hero-icon {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 30px; height: 30px;
+    background: rgba(245,236,215,0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .ps-place-hero-deco {
+    position: absolute;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 120px;
+    color: rgba(245,236,215,0.15);
+    line-height: 1;
+    bottom: -20px;
+    left: -8px;
+    font-weight: 300;
+  }
+
+  .ps-place-hero-bottom {
+    position: relative;
+    z-index: 2;
+    color: var(--cream);
+  }
+
+  .ps-place-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--tomato);
+    color: var(--cream);
+    padding: 3px 8px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .ps-place-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .ps-place-name em { font-style: italic; }
+
+  .ps-place-info {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ps-place-info-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(26,20,16,0.08);
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .ps-place-info-chip.live {
+    background: var(--moss);
+    color: var(--cream);
+  }
+  .ps-place-info-chip.live::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 5px;
+    background: var(--marigold);
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .ps-curator-note {
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--tomato);
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .ps-curator-note-author {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .ps-curator-avatar {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--tomato);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .ps-curator-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .ps-curator-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-left: auto;
+    background: var(--marigold);
+    padding: 2px 6px;
+    border-radius: 100px;
+    color: var(--ink);
+  }
+
+  .ps-curator-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 11.5px;
+  }
+
+  .ps-mini-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .ps-mini-card {
+    flex: 1;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 9.5px;
+    text-align: center;
+  }
+
+  .ps-mini-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+  }
+
+  .ps-mini-card-value {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .ps-mini-card-value em { font-style: italic; color: var(--tomato); }
+
+  /* ============ SCREEN 5: MATE PROFILE ============ */
+  .ps-mate-screen { background: linear-gradient(170deg, #f0e9d5 0%, #e5dcc0 100%); }
+
+  .ps-mate-hero {
+    margin: 0 -16px 14px;
+    padding: 18px 16px 14px;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-mate-hero::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    background: var(--tomato);
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.4;
+    bottom: -100px; right: -50px;
+  }
+
+  .ps-mate-hero-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-mate-avatar {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--marigold), var(--tomato));
+    border: 3px solid var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ps-mate-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 16px; height: 16px;
+    background: var(--moss);
+    border: 2px solid var(--cream);
+    border-radius: 50%;
+  }
+
+  .ps-mate-info { flex: 1; min-width: 0; }
+
+  .ps-mate-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .ps-mate-name em { font-style: italic; color: var(--marigold); }
+
+  .ps-mate-bio {
+    font-size: 10px;
+    opacity: 0.85;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .ps-mate-stats {
+    display: flex;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--marigold);
+  }
+
+  .ps-mate-stats strong { color: var(--cream); font-size: 11px; font-weight: 500; }
+
+  .ps-mate-badges {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-badge {
+    background: rgba(245,236,215,0.15);
+    border: 1px solid rgba(245,236,215,0.3);
+    color: var(--cream);
+    padding: 4px 9px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .ps-badge.primary { background: var(--marigold); color: var(--ink); border-color: var(--marigold); font-weight: 600; }
+
+  .ps-mate-quote {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 12px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    color: var(--ink-soft);
+    position: relative;
+  }
+
+  .ps-mate-quote::before {
+    content: '"';
+    position: absolute;
+    top: -8px; left: 8px;
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    color: var(--tomato);
+    line-height: 1;
+  }
+
+  .ps-mate-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--moss-deep);
+    margin: 10px 0 6px;
+    font-weight: 600;
+  }
+
+  .ps-mate-cta {
+    background: var(--tomato);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  .ps-mate-cta-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ps-mate-cta-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ SCREEN 6: QUEST / PROGRESS ============ */
+  .ps-quest-screen { background: linear-gradient(170deg, #f0ead8 0%, #e0d9bc 100%); color: var(--ink); }
+
+  .ps-quest-header-band {
+    background: var(--moss-deep);
+    color: var(--cream);
+    margin: 0 -16px 14px;
+    padding: 14px 16px;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .ps-quest-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .ps-quest-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  .ps-quest-title em { font-style: italic; color: var(--marigold); }
+
+  .ps-quest-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 10px;
+  }
+
+  .ps-quest-progress {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 6px;
+  }
+
+  .ps-quest-progress-step {
+    flex: 1;
+    height: 5px;
+    background: rgba(245,236,215,0.2);
+    border-radius: 100px;
+  }
+
+  .ps-quest-progress-step.done { background: var(--marigold); }
+  .ps-quest-progress-step.current { background: var(--tomato); }
+
+  .ps-quest-progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    font-weight: 600;
+  }
+
+  .ps-quest-step {
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .ps-quest-step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--moss-deep);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .ps-quest-step.done .ps-quest-step-num { background: var(--marigold); color: var(--ink); }
+  .ps-quest-step.current .ps-quest-step-num { background: var(--tomato); color: var(--cream); animation: pulse 1.6s ease infinite; }
+  .ps-quest-step.locked { opacity: 0.5; }
+  .ps-quest-step.locked .ps-quest-step-num { background: var(--rule); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(217, 79, 42, 0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(217, 79, 42, 0); }
+  }
+
+  .ps-quest-step-body { flex: 1; min-width: 0; }
+  .ps-quest-step-title {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+  .ps-quest-step-meta {
+    font-size: 9px;
+    opacity: 0.7;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .ps-quest-step-points {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--tomato);
+    background: rgba(217, 79, 42, 0.12);
+    padding: 3px 7px;
+    border-radius: 100px;
+  }
+
+  .ps-quest-step.done .ps-quest-step-points { background: var(--marigold); color: var(--ink); }
+
+  /* ============ PERSONA SECTION ============ */
+  .persona-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--cream) 0%, #efe6cf 100%);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .persona-section::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: var(--plum);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    top: -100px;
+    left: -200px;
+  }
+
+  .persona-section::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: var(--tomato);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    bottom: -150px;
+    right: -100px;
+  }
+
+  .persona-intro {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 2;
+    align-items: end;
+  }
+
+  .persona-pullquote {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 28px;
+    border-radius: 20px;
+    position: relative;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .persona-pullquote::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: 10px; bottom: 10px;
+    background: var(--plum);
+    border-radius: 20px;
+    z-index: -1;
+  }
+
+  .persona-pullquote em { color: var(--marigold); font-style: italic; }
+
+  .persona-pullquote-attr {
+    display: block;
+    margin-top: 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-style: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--marigold);
+  }
+
+  /* THREE-SCREEN PERSONA SHOWCASE */
+  .persona-screens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ============ CHAT/ONBOARDING SCREEN ============ */
+  .ps-chat-screen {
+    background: linear-gradient(170deg, #f0e9d5 0%, #e5dcc0 100%);
+    color: var(--ink);
+  }
+
+  .ps-chat-screen .ps-header {
+    border-bottom: 1px solid rgba(26,20,16,0.15);
+  }
+
+  .ps-chat-screen .ps-title em { color: var(--plum); }
+  .ps-chat-screen .ps-tabbar { background: rgba(240,233,213,0.95); }
+
+  .ps-agent-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ps-agent-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--plum), var(--tomato));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ps-agent-avatar svg { width: 18px; height: 18px; color: var(--cream); }
+
+  .ps-agent-avatar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; right: -2px;
+    width: 12px; height: 12px;
+    background: var(--moss);
+    border: 2px solid var(--cream);
+    border-radius: 50%;
+  }
+
+  .ps-agent-name {
+    flex: 1;
+  }
+
+  .ps-agent-name-main {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .ps-agent-name-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+
+  .ps-bubble {
+    max-width: 88%;
+    padding: 10px 13px;
+    border-radius: 16px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .ps-bubble.agent {
+    background: rgba(255,255,255,0.85);
+    color: var(--ink);
+    border-bottom-left-radius: 4px;
+    font-family: 'Fraunces', serif;
+  }
+
+  .ps-bubble.agent em { color: var(--plum); font-style: italic; font-weight: 500; }
+
+  .ps-bubble.user {
+    background: var(--ink);
+    color: var(--cream);
+    margin-left: auto;
+    border-bottom-right-radius: 4px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .ps-chip-options {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: -2px;
+  }
+
+  .ps-chip-option {
+    background: rgba(109, 74, 110, 0.1);
+    color: var(--plum);
+    border: 1px solid var(--plum);
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .ps-chip-option.selected {
+    background: var(--plum);
+    color: var(--cream);
+  }
+
+  .ps-typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 13px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    margin-bottom: 8px;
+  }
+
+  .ps-typing-dot {
+    width: 5px; height: 5px;
+    background: var(--plum);
+    border-radius: 50%;
+    animation: typeDot 1.4s ease infinite;
+  }
+
+  .ps-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .ps-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typeDot {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  .ps-input-bar {
+    margin-top: auto;
+    padding-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.7);
+    padding: 8px 10px;
+    border-radius: 100px;
+    border: 1px solid rgba(26,20,16,0.1);
+  }
+
+  .ps-input-bar-text {
+    flex: 1;
+    font-size: 10px;
+    color: var(--ink-faint);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .ps-input-mic {
+    width: 22px; height: 22px;
+    background: var(--plum);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-size: 11px;
+  }
+
+  /* ============ PROFILE / MEMORY SCREEN ============ */
+  .ps-profile-screen {
+    background: linear-gradient(170deg, #fcf5e3 0%, #e8dcc0 100%);
+    color: var(--ink);
+  }
+
+  .ps-profile-screen .ps-tabbar { background: rgba(252,245,227,0.95); }
+  .ps-profile-screen .ps-title em { color: var(--plum); }
+
+  .ps-profile-hero {
+    margin: 0 -16px 12px;
+    padding: 18px 16px 14px;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-profile-hero::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    background: var(--plum);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.5;
+    top: -80px; right: -80px;
+  }
+
+  .ps-profile-hero-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-profile-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--marigold), var(--tomato));
+    border: 3px solid var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+
+  .ps-profile-info { flex: 1; }
+  .ps-profile-name {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .ps-profile-name em { font-style: italic; color: var(--marigold); }
+
+  .ps-profile-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 11px;
+    opacity: 0.85;
+    line-height: 1.3;
+  }
+
+  .ps-trait-section {
+    margin-bottom: 10px;
+  }
+
+  .ps-trait-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ps-trait-label::after {
+    content: '✎';
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--plum);
+  }
+
+  .ps-trait-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ps-trait-chip {
+    padding: 4px 9px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(26,20,16,0.1);
+    color: var(--ink);
+  }
+
+  .ps-trait-chip.taste { background: var(--mint); border-color: var(--moss); color: var(--moss-deep); }
+  .ps-trait-chip.mood { background: var(--butter); border-color: var(--marigold); }
+  .ps-trait-chip.purpose { background: var(--plum); color: var(--cream); border-color: var(--plum); }
+  .ps-trait-chip.hobby { background: var(--sky); color: var(--ink); border-color: var(--ocean); }
+
+  .ps-memory-card {
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 11px;
+    line-height: 1.35;
+    border-left: 3px solid var(--plum);
+  }
+
+  .ps-memory-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plum);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .ps-memory-card-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* ============ ASK SCREEN ============ */
+  .ps-ask-screen {
+    background: linear-gradient(170deg, #f5ecd7 0%, #ead9b4 100%);
+    color: var(--ink);
+  }
+
+  .ps-ask-screen .ps-title em { color: var(--tomato); }
+  .ps-ask-screen .ps-tabbar { background: rgba(245,236,215,0.95); }
+
+  .ps-ask-banner {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-ask-banner::after {
+    content: '';
+    position: absolute;
+    width: 100px; height: 100px;
+    background: var(--marigold);
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.4;
+    top: -30px; right: -30px;
+  }
+
+  .ps-ask-banner-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-ask-icon {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--marigold), var(--tomato));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .ps-ask-banner-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    font-weight: 600;
+  }
+
+  .ps-ask-banner-text strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--cream);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+
+  .ps-user-question {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 10px 13px;
+    border-radius: 14px;
+    border-bottom-right-radius: 4px;
+    margin-left: 24px;
+    margin-bottom: 10px;
+    font-size: 11px;
+    line-height: 1.4;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .ps-ask-thinking {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+  }
+
+  .ps-ask-thinking::before {
+    content: '✦';
+    color: var(--marigold);
+    font-size: 12px;
+  }
+
+  .ps-ask-answer {
+    background: rgba(255,255,255,0.85);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--tomato);
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .ps-ask-answer-intro {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .ps-ask-answer-intro strong { color: var(--tomato); font-weight: 500; }
+
+  .ps-ask-result {
+    background: rgba(245,236,215,0.7);
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ps-ask-result-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .ps-ask-result-body { flex: 1; min-width: 0; }
+
+  .ps-ask-result-title {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+
+  .ps-ask-result-meta {
+    font-size: 8.5px;
+    opacity: 0.7;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .ps-ask-result-match {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--tomato);
+    background: rgba(217, 79, 42, 0.12);
+    padding: 3px 7px;
+    border-radius: 100px;
+  }
+
+  .persona-screens .screen-label { background: var(--plum); color: var(--cream); }
+
+  @media (max-width: 1100px) {
+    .persona-screens { grid-template-columns: repeat(2, 1fr); }
+    .persona-intro { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  @media (max-width: 900px) {
+    .persona-screens { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* ============ PASSPORT SECTION ============ */
+  .passport-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #efe6cf 0%, #e0d5b8 100%);
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .passport-section::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: var(--ocean);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    top: 10%;
+    right: -200px;
+  }
+
+  .passport-section::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: var(--marigold);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.22;
+    bottom: -150px;
+    left: -100px;
+  }
+
+  .passport-intro {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 2;
+    align-items: end;
+  }
+
+  .passport-screens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .passport-screens .screen-label { background: var(--ocean); color: var(--cream); }
+
+  /* PASSPORT JOURNAL SCREEN */
+  .ps-journal-screen {
+    background: linear-gradient(170deg, #f0ead8 0%, #e0d5b8 100%);
+    color: var(--ink);
+  }
+
+  .ps-journal-screen .ps-title em { color: var(--ocean); }
+  .ps-journal-screen .ps-tabbar { background: rgba(240,234,216,0.95); }
+
+  .ps-passport-hero {
+    margin: 0 -16px 12px;
+    padding: 18px 16px 14px;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-passport-hero::after {
+    content: '⌖';
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    font-size: 180px;
+    color: rgba(232, 169, 60, 0.1);
+    line-height: 1;
+    font-family: 'Fraunces', serif;
+  }
+
+  .ps-passport-stamp {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    border: 1px solid var(--marigold);
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .ps-passport-cityname {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 0.95;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-passport-cityname em { font-style: italic; color: var(--marigold); }
+
+  .ps-passport-stats {
+    display: flex;
+    gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-passport-stats strong {
+    color: var(--marigold);
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+  }
+
+  .ps-journal-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ocean);
+    font-weight: 600;
+    margin: 12px 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ps-journal-date::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(45, 95, 125, 0.2);
+  }
+
+  .ps-journal-entry {
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .ps-journal-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--ocean);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .ps-journal-icon.food { background: var(--tomato); }
+  .ps-journal-icon.quest { background: var(--marigold); color: var(--ink); }
+  .ps-journal-icon.mate { background: var(--plum); }
+  .ps-journal-icon.code { background: var(--moss-deep); }
+
+  .ps-journal-body { flex: 1; min-width: 0; }
+
+  .ps-journal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 2px;
+  }
+
+  .ps-journal-title em { font-style: italic; color: var(--ocean); }
+
+  .ps-journal-meta {
+    font-size: 9.5px;
+    color: var(--ink-faint);
+    line-height: 1.3;
+  }
+
+  .ps-journal-note {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    padding-left: 8px;
+    border-left: 2px solid var(--marigold);
+  }
+
+  /* THREADING SCREEN */
+  .ps-thread-screen {
+    background: linear-gradient(170deg, #d9e3ea 0%, #b8cad6 100%);
+    color: #1a2a3a;
+  }
+
+  .ps-thread-screen .ps-title em { color: var(--ocean); }
+  .ps-thread-screen .ps-tabbar { background: rgba(217,227,234,0.95); }
+
+  .ps-thread-banner {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-thread-banner::before {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    background: var(--marigold);
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.5;
+    top: -40px; right: -40px;
+  }
+
+  .ps-thread-banner-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--marigold);
+    font-weight: 600;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-thread-banner-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.15;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ps-thread-banner-title em { color: var(--marigold); }
+
+  .ps-thread-pair {
+    background: rgba(255,255,255,0.7);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .ps-thread-pair-conn {
+    position: absolute;
+    left: 32px;
+    top: 50px;
+    bottom: 50px;
+    width: 2px;
+    background: var(--marigold);
+    border-left: 2px dashed var(--marigold);
+  }
+
+  .ps-thread-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 4px 0;
+  }
+
+  .ps-thread-row + .ps-thread-row { margin-top: 4px; }
+
+  .ps-thread-thumb {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--moss-deep);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+    border: 2px solid rgba(255,255,255,0.7);
+  }
+
+  .ps-thread-thumb.then { background: var(--tomato); }
+  .ps-thread-thumb.now { background: var(--marigold); color: var(--ink); }
+
+  .ps-thread-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ps-thread-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 7.5px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin-bottom: 1px;
+  }
+
+  .ps-thread-title {
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  .ps-thread-title em { font-style: italic; color: var(--tomato); }
+
+  .ps-thread-meta {
+    font-size: 9px;
+    color: var(--ink-faint);
+    margin-top: 1px;
+  }
+
+  .ps-thread-cta {
+    background: var(--tomato);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  .ps-thread-cta-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ps-thread-cta-arrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* WISHLIST SCREEN */
+  .ps-wish-screen {
+    background: linear-gradient(170deg, #f5ecd7 0%, #ead2c2 100%);
+    color: var(--ink);
+  }
+
+  .ps-wish-screen .ps-title em { color: var(--hot-pink); }
+  .ps-wish-screen .ps-tabbar { background: rgba(245,236,215,0.95); }
+
+  .ps-wish-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+  }
+
+  .ps-wish-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(26,20,16,0.1);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .ps-wish-tab.active {
+    background: var(--ink);
+    color: var(--marigold);
+    border-color: var(--ink);
+  }
+
+  .ps-wish-tab-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    padding: 1px 4px;
+    border-radius: 100px;
+    background: var(--hot-pink);
+    color: var(--cream);
+    margin-left: 4px;
+  }
+
+  .ps-wish-alert {
+    background: var(--hot-pink);
+    color: var(--cream);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ps-wish-alert::after {
+    content: '!';
+    position: absolute;
+    bottom: -30px; right: -10px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 110px;
+    line-height: 1;
+    opacity: 0.18;
+    font-weight: 700;
+  }
+
+  .ps-wish-alert-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--butter);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .ps-wish-alert-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .ps-wish-alert-sub {
+    font-size: 10px;
+    line-height: 1.35;
+    opacity: 0.9;
+  }
+
+  .ps-wish-card {
+    background: rgba(255,255,255,0.75);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .ps-wish-thumb {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--hot-pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .ps-wish-thumb.food { background: var(--tomato); }
+  .ps-wish-thumb.cafe { background: var(--moss); }
+  .ps-wish-thumb.spot { background: var(--ocean); }
+
+  .ps-wish-body { flex: 1; min-width: 0; }
+
+  .ps-wish-title {
+    font-family: 'Fraunces', serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 2px;
+  }
+
+  .ps-wish-meta {
+    font-size: 9px;
+    opacity: 0.7;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .ps-wish-source {
+    background: rgba(26,20,16,0.08);
+    padding: 1px 6px;
+    border-radius: 100px;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .ps-wish-near {
+    background: var(--marigold);
+    color: var(--ink);
+    padding: 2px 7px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .ps-wish-add {
+    margin-top: 12px;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 100px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .ps-wish-add-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--marigold);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1100px) {
+    .passport-screens { grid-template-columns: repeat(2, 1fr); }
+    .passport-intro { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  @media (max-width: 900px) {
+    .passport-screens { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  /* COMPETITION */
+  .compare-section { background: var(--cream) !important; }
+  .compare-wrap {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 24px;
+    padding: 30px;
+    overflow-x: auto;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 14px;
+    min-width: 720px;
+  }
+  .compare-table th, .compare-table td {
+    text-align: center;
+    padding: 18px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+  .compare-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+    border-bottom: 2px solid var(--ink);
+  }
+  .compare-table tbody td:first-child {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+  }
+  .compare-table .dot {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+  .compare-table .dot.yes { background: var(--tomato); }
+  .compare-table .dot.partial { background: var(--marigold); border: 2px solid var(--terra); }
+  .compare-table tr.us { background: var(--ink); }
+  .compare-table tr.us td { color: var(--cream); border-bottom: none; }
+  .compare-table tr.us td:first-child { color: var(--marigold); font-size: 22px; }
+  .compare-table tr.us .dot.yes { background: var(--marigold); }
+  .compare-legend {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  /* CLOSE */
+  .close {
+    padding: 120px 0 80px;
+    background: var(--ink);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .close-bg-text {
+    position: absolute;
+    bottom: -100px; right: -60px;
+    font-family: 'Fraunces', serif;
+    font-size: 400px;
+    font-weight: 300;
+    line-height: 0.8;
+    color: rgba(232, 169, 60, 0.06);
+    letter-spacing: -0.05em;
+    font-variation-settings: "WONK" 1;
+    font-style: italic;
+    pointer-events: none;
+  }
+  .close-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+  }
+  .close-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 6.5vw, 96px);
+    line-height: 0.95;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+  .close-title em { font-style: italic; color: var(--marigold); font-variation-settings: "WONK" 1; }
+  .close-title em::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 6px;
+    background: var(--tomato);
+    margin-top: 12px;
+    border-radius: 100px;
+  }
+  .close-body {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.4;
+    color: rgba(245,236,215,0.75);
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+  .close-body em { color: var(--marigold); font-style: italic; }
+  .close-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 30px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-weight: 500;
+  }
+  .btn-primary { background: var(--tomato); color: var(--cream); }
+  .btn-primary:hover { background: var(--marigold); color: var(--ink); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--cream); border-color: rgba(245,236,215,0.3); }
+  .btn-ghost:hover { border-color: var(--marigold); color: var(--marigold); }
+  .close-side {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 32px;
+    border-radius: 24px;
+    position: relative;
+  }
+  .close-side::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: 10px; bottom: 10px;
+    background: var(--marigold);
+    border-radius: 24px;
+    z-index: -1;
+  }
+  .close-side-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .close-side-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .close-side-badge {
+    background: var(--tomato);
+    color: var(--cream);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .close-side-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .close-side-item:last-child { border-bottom: none; }
+  .close-side-item-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+  }
+  .close-side-item-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+  .close-side-item-detail strong {
+    color: var(--tomato);
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+  }
+
+  footer {
+    background: var(--ink);
+    color: rgba(245,236,215,0.5);
+    padding: 28px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(245,236,215,0.1);
+  }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+
+  /* SVG ICON */
+  .svg-icon { width: 16px; height: 16px; flex-shrink: 0; }
+
+  @media (max-width: 1100px) {
+    .screens-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 40px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .problem-cell { min-height: 200px; }
+    .layers { grid-template-columns: 1fr; gap: 16px; }
+    .layer-01, .layer-02, .layer-03, .layer-04, .layer-05, .layer-06 { grid-column: 1; }
+    .app-intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .screens-grid { grid-template-columns: 1fr; gap: 40px; }
+    .close-grid { grid-template-columns: 1fr; }
+    .masthead-meta { display: none; }
+    .ticker-track { font-size: 20px; }
+    .section-heading { font-size: clamp(34px, 9vw, 56px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-top-rule, .hero-title, .hero-grid {
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-title { animation-delay: 0.1s; }
+  .hero-grid { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="masthead-inner">
+      <div class="logo-mark">
+        <svg class="logo-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="#1a1410"/>
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#e8a93c" stroke-width="1" stroke-dasharray="2 3"/>
+          <path d="M 14 11 L 14 29 L 22 29 Q 27 29 27 24.5 Q 27 21 24 20 Q 27 19 27 15.5 Q 27 11 22 11 Z" fill="#f5ecd7"/>
+          <path d="M 17 14 L 17 19 L 20.5 19 Q 22.5 19 22.5 16.5 Q 22.5 14 20.5 14 Z" fill="#1a1410"/>
+          <path d="M 17 21 L 17 26 L 21 26 Q 23.5 26 23.5 23.5 Q 23.5 21 21 21 Z" fill="#1a1410"/>
+          <circle cx="31" cy="11" r="4.5" fill="#d94f2a" stroke="#f5ecd7" stroke-width="1"/>
+          <circle cx="31" cy="11" r="1.8" fill="#f5ecd7"/>
+        </svg>
+        Basics
+      </div>
+      <div class="masthead-meta">
+        <span>Portland pilot</span>
+        <a href="prototype.html" style="color: inherit;">Prototype</a>
+        <a href="mailto:hello@getbasics.app" style="color: inherit;">hello@getbasics.app</a>
+        <span style="color: var(--moss, #4A6B3A); font-weight: 500;">● Building now</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-shapes">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-top-rule">
+      <span class="hero-eyebrow">For people who care about cities</span>
+      <div class="hero-top-rule-mid"></div>
+      <span>Pilot City: Portland, OR</span>
+    </div>
+
+    <h1 class="hero-title">
+      Get the Basics,<br/>
+      <span class="hero-title-line2">know the <em>Civics.</em></span>
+    </h1>
+
+    <div class="hero-grid">
+      <p class="hero-tagline">
+        Travel apps are built for <em>tourists.</em> <strong>Basics is built for everyone else</strong> &mdash; the long-stay traveler, the new transplant, the digital nomad &mdash; who's done feeling like a visitor and wants to actually <em>arrive somewhere.</em>
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-block">
+          <span class="hero-meta-label">→ The Product</span>
+          One app. Every city is a chapter. Install Basics, choose a city, and the whole experience becomes <em>Portland Basics, Austin Basics, Lisbon Basics</em> &mdash; same shell, different civic.
+        </div>
+        <div class="hero-meta-block">
+          <span class="hero-meta-label">→ The Promise</span>
+          Don't visit like a tourist. <em>Arrive like a local.</em> Then keep every city you've ever lived into.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Portland Basics <span class="ticker-dot"></span> Austin Basics <span class="ticker-dot t"></span> Lisbon Basics <span class="ticker-dot s"></span> Mexico City Basics <span class="ticker-dot p"></span> Tokyo Basics <span class="ticker-dot m"></span> Berlin Basics <span class="ticker-dot"></span> Bangkok Basics <span class="ticker-dot t"></span></span>
+    <span>Portland Basics <span class="ticker-dot"></span> Austin Basics <span class="ticker-dot t"></span> Lisbon Basics <span class="ticker-dot s"></span> Mexico City Basics <span class="ticker-dot p"></span> Tokyo Basics <span class="ticker-dot m"></span> Berlin Basics <span class="ticker-dot"></span> Bangkok Basics <span class="ticker-dot t"></span></span>
+  </div>
+</div>
+
+<section class="editorial problem-section">
+  <div class="container">
+    <div class="section-label"><span class="section-label-num">01</span> The Problem</div>
+    <h2 class="section-heading">Travel apps are built for tourists. <em>Nobody</em> builds for the rest.</h2>
+
+    <p class="hero-tagline" style="margin-bottom: 56px; max-width: 760px;">
+      Remote work, long stays, and rolling relocations have created a huge new class of traveler &mdash; <strong>the in-between</strong>. They stay two weeks, two months, sometimes forever. They don't want to feel like tourists, and they don't have a tool built for them. <em>That's our user.</em>
+    </p>
+
+    <div class="problem-grid">
+      <div class="problem-cell c1">
+        <div>
+          <div class="problem-cell-tag">The long-stay traveler</div>
+          <p class="problem-cell-text">Two months in <em>Lisbon</em>. Cobbling together Reddit, Google Maps, and a friend's texts.</p>
+        </div>
+        <span class="problem-cell-bigletter">A</span>
+      </div>
+      <div class="problem-cell c2">
+        <div>
+          <div class="problem-cell-tag">The new transplant</div>
+          <p class="problem-cell-text">Just moved to <em>Portland</em>. Wants to belong, not just survive year one.</p>
+        </div>
+        <span class="problem-cell-bigletter">B</span>
+      </div>
+      <div class="problem-cell c3">
+        <div>
+          <div class="problem-cell-tag">The digital nomad</div>
+          <p class="problem-cell-text">Three cities a year. Re-onboards from <em>zero</em> every time. No memory carries over.</p>
+        </div>
+        <span class="problem-cell-bigletter">C</span>
+      </div>
+      <div class="problem-cell c4">
+        <div>
+          <div class="problem-cell-tag">The returning visitor</div>
+          <p class="problem-cell-text">Back in <em>Tokyo</em> for the fourth time. Still browsing the same tourist lists as trip one.</p>
+        </div>
+        <span class="problem-cell-bigletter">D</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="editorial layers-section">
+  <div class="container">
+    <div class="section-label"><span class="section-label-num">02</span> The Product</div>
+    <h2 class="section-heading">Six layers that turn a visitor into a <em>believable local</em> — and remember every city you've lived into.</h2>
+
+    <div class="layers">
+      <div class="layer layer-01">
+        <span class="layer-num">№ 01</span>
+        <h3 class="layer-name">The <em>Shell</em></h3>
+        <div class="layer-sub">Basics · the platform</div>
+        <p class="layer-desc">One app to install. Account, passport of cities, points, streaks. <strong>Stays minimal worldwide.</strong> The civic loads on top.</p>
+        <span class="layer-deco">S</span>
+      </div>
+
+      <div class="layer layer-02">
+        <span class="layer-num">№ 02</span>
+        <h3 class="layer-name">The <em>Civic</em></h3>
+        <div class="layer-sub">Each city, curated</div>
+        <p class="layer-desc">The Code (unwritten rules), the Map (places by vibe), the Rhythms (this week), the Quests (depth, not breadth), the Perks (real local discounts). <strong>One paid curator per city.</strong></p>
+        <span class="layer-deco">C</span>
+      </div>
+
+      <div class="layer layer-03">
+        <span class="layer-num">№ 03</span>
+        <h3 class="layer-name">The <em>Persona</em></h3>
+        <div class="layer-sub">Vibe Check · then an AI that learns you</div>
+        <p class="layer-desc">Starts simple: <strong>Vibe Check</strong> &mdash; pick your mood (quiet coffee, slow walk, night out, date night) and the map shows the places and neighborhoods that match. Every place card carries a <strong>vibe line</strong> in a local voice. Later, an AI learns your vibe over time and builds itineraries from it.</p>
+        <span class="layer-deco">P</span>
+      </div>
+
+      <div class="layer layer-04">
+        <span class="layer-num">№ 04</span>
+        <h3 class="layer-name">The <em>Blend</em></h3>
+        <div class="layer-sub">Wear · Speak · Gesture · Sound</div>
+        <p class="layer-desc">Four things that mark you as someone who belongs: <strong>one piece of attire</strong> to add, <strong>ten phrases</strong> with native audio, <strong>local gestures</strong> &mdash; namaste, the four-way wave, the elevator silence &mdash; and <strong>the Sound</strong>, the track the city is playing this week. The visible-tourist tells, neutralized.</p>
+        <span class="layer-deco">B</span>
+      </div>
+
+      <div class="layer layer-05">
+        <span class="layer-num">№ 05</span>
+        <h3 class="layer-name">The <em>Mates</em></h3>
+        <div class="layer-sub">Certified locals · badged, not ranked</div>
+        <p class="layer-desc">Real humans who pass a <strong>civic fluency exam</strong>, not a job interview. Badged by domain — Food, Nightlife, Outdoors, Old Soul. Meet for coffee. No tour script. The deepest version of the civic.</p>
+        <span class="layer-deco">M</span>
+      </div>
+
+      <div class="layer layer-06">
+        <span class="layer-num">№ 06</span>
+        <h3 class="layer-name">The <em>Passport</em></h3>
+        <div class="layer-sub">Journal · Wishlist · Cross-city memory</div>
+        <p class="layer-desc">Your travels, threaded. Every city auto-stamps your moments. <strong>Wishlist things from TikTok</strong> — surfaced when you arrive. Eat Indian food in Portland? <strong>The app remembers when you land in India.</strong> The more cities, the smarter it gets.</p>
+        <span class="layer-deco">⌖</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE APP — 6 SCREEN SHOWCASE ============ -->
+<section class="app-section">
+  <div class="container">
+    <div class="app-intro">
+      <div class="app-intro-grid">
+        <div>
+          <div class="section-label"><span class="section-label-num">03</span> The App · Portland Basics</div>
+          <h2 class="section-heading">Six screens of <em>Portland</em>, six ways in.</h2>
+        </div>
+        <div class="app-quote">
+          "Welcome back, Likith. It's drizzling all week — here's what we do indoors."
+          <span class="app-quote-attr">— Portland Basics · 9:41am</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screens-grid">
+
+      <!-- ============ SCREEN 1: HOME / TODAY ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">Portland<br/><em>Basics</em></div>
+                <div class="ps-avatar">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span>Day 47 lived in</span>
+                <span>53°F · drizzle</span>
+              </div>
+            </div>
+            <div class="ps-body" style="overflow-y: hidden;">
+              <div class="ps-greeting">
+                Morning, Likith. The rain hasn't lifted — your Code card is about <em>walking around in it</em>.
+              </div>
+
+              <div class="ps-section-label">Today's Code</div>
+              <div class="ps-card">
+                <div class="ps-card-thumb" style="background: var(--tomato);">☔</div>
+                <div class="ps-card-body">
+                  <div class="ps-card-eyebrow">Rule №07</div>
+                  <div class="ps-card-title">Locals don't use umbrellas.</div>
+                  <div class="ps-card-meta">2 min · why & what to wear</div>
+                </div>
+              </div>
+
+              <div class="ps-section-label">This Week</div>
+              <div class="ps-card">
+                <div class="ps-card-thumb" style="background: var(--moss);">🎨</div>
+                <div class="ps-card-body">
+                  <div class="ps-card-eyebrow">First Thu · Tomorrow</div>
+                  <div class="ps-card-title">Alberta Art Walk</div>
+                  <div class="ps-card-meta">Galleries open late · free</div>
+                </div>
+              </div>
+
+              <div class="ps-card">
+                <div class="ps-card-thumb" style="background: var(--ocean);">🌲</div>
+                <div class="ps-card-body">
+                  <div class="ps-card-eyebrow">Sunday</div>
+                  <div class="ps-card-title">Forest Park 6 a.m.</div>
+                  <div class="ps-card-meta">Before crowds · Wildwood Trail</div>
+                </div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab active"><span>●</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 01 · Today</div>
+        <div class="screen-caption">The morning landing. Greeted by name, by weather, by what locals would do right now.</div>
+      </div>
+
+      <!-- ============ SCREEN 2: MAP VIEW ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-map-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-map">
+              <!-- Map background -->
+              <div class="ps-map-river"></div>
+
+              <!-- Search bar -->
+              <div class="ps-map-search">
+                <svg class="ps-map-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+                <span>Mississippi Ave · 5 min</span>
+              </div>
+
+              <!-- Filter chips -->
+              <div class="ps-map-filter-row">
+                <div class="ps-filter-chip active">All</div>
+                <div class="ps-filter-chip">Coffee</div>
+                <div class="ps-filter-chip">Food</div>
+                <div class="ps-filter-chip">Bars</div>
+                <div class="ps-filter-chip">Outdoor</div>
+              </div>
+
+              <!-- Map pins -->
+              <div class="ps-pin coffee" style="top: 35%; left: 20%;"><span>☕</span></div>
+              <div class="ps-pin food" style="top: 28%; left: 32%;"><span>🥢</span></div>
+              <div class="ps-pin bar" style="top: 50%; left: 25%;"><span>🍺</span></div>
+              <div class="ps-pin active" style="top: 42%; left: 28%;"><span>★</span></div>
+              <div class="ps-pin shop" style="top: 60%; left: 18%;"><span>📚</span></div>
+              <div class="ps-pin outdoor" style="top: 25%; left: 55%;"><span>🌲</span></div>
+              <div class="ps-pin coffee" style="top: 55%; left: 62%;"><span>☕</span></div>
+              <div class="ps-pin food" style="top: 38%; left: 75%;"><span>🍕</span></div>
+              <div class="ps-pin bar" style="top: 65%; left: 70%;"><span>🥃</span></div>
+
+              <!-- Bottom sheet with selected place -->
+              <div class="ps-map-sheet">
+                <div class="ps-map-sheet-handle"></div>
+                <div class="ps-sheet-card">
+                  <div class="ps-sheet-thumb">☕</div>
+                  <div class="ps-sheet-body">
+                    <div class="ps-sheet-eyebrow">Local Favorite · Mississippi</div>
+                    <div class="ps-sheet-title">Either/Or Coffee</div>
+                    <div class="ps-sheet-meta">3 min walk · open till 5pm</div>
+                    <div class="ps-sheet-tags">
+                      <span class="ps-tag hot">Quest Spot</span>
+                      <span class="ps-tag">Work-friendly</span>
+                      <span class="ps-tag">Morning</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ps-tabbar" style="background: rgba(216,223,208,0.95);">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab active"><span>●</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 02 · Map</div>
+        <div class="screen-caption">Places organized by neighborhood vibe. Color-coded pins by category. Quest spots glow.</div>
+      </div>
+
+      <!-- ============ SCREEN 3: CODE CARD ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-code-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">The <em>Code</em></div>
+                <div class="ps-avatar">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span style="color: var(--marigold);">12 / 30 learned</span>
+                <span style="color: var(--marigold);">Streak 8</span>
+              </div>
+            </div>
+            <div class="ps-body">
+              <div class="ps-code-progress">
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot done"></div>
+                <div class="ps-code-progress-dot active"></div>
+                <div class="ps-code-progress-dot"></div>
+                <div class="ps-code-progress-dot"></div>
+                <div class="ps-code-progress-dot"></div>
+              </div>
+
+              <div class="ps-code-hero">
+                <div class="ps-code-rule-num">Rule №07 · Etiquette</div>
+                <div class="ps-code-rule-title">Locals don't use<br/><em>umbrellas.</em></div>
+                <div class="ps-code-rule-sub">A hood, a hat, or nothing at all. Umbrellas mark you as new.</div>
+              </div>
+
+              <div class="ps-code-detail">
+                <div class="ps-code-detail-label">→ Why</div>
+                Rain here is light and constant — not the kind that ruins your hair. An umbrella is a 30-second commitment for a 2-second sprinkle. <strong>Locals zip up and keep walking.</strong>
+              </div>
+
+              <div class="ps-code-detail">
+                <div class="ps-code-detail-label">→ Instead, do this</div>
+                Pack a <strong>waterproof shell</strong>. Wear a brimmed hat. Embrace the drizzle &mdash; you'll start to like it.
+              </div>
+
+              <div class="ps-code-detail">
+                <div class="ps-code-detail-label">→ Exception</div>
+                Sideways downpour in November. <strong>Then everyone caves.</strong>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab active"><span>●</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 03 · The Code</div>
+        <div class="screen-caption">Unwritten rules in card form. Why · what to do instead · exceptions. Progress tracked.</div>
+      </div>
+
+      <!-- ============ SCREEN 4: PLACE DETAIL ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-place-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-body" style="padding-top: 0;">
+              <div class="ps-place-hero">
+                <div class="ps-place-hero-icon">←</div>
+                <div class="ps-place-hero-deco">e/o</div>
+                <div class="ps-place-hero-bottom">
+                  <div class="ps-place-eyebrow">Coffee · Mississippi</div>
+                  <div class="ps-place-name">Either / <em>Or</em></div>
+                </div>
+              </div>
+
+              <div class="ps-place-info">
+                <span class="ps-place-info-chip live">Open · till 5pm</span>
+                <span class="ps-place-info-chip">$$</span>
+                <span class="ps-place-info-chip">3 min walk</span>
+              </div>
+
+              <div class="ps-curator-note">
+                <div class="ps-curator-note-author">
+                  <div class="ps-curator-avatar">M</div>
+                  <div class="ps-curator-name">Maya, your curator</div>
+                  <div class="ps-curator-badge">Local · 12y</div>
+                </div>
+                <div class="ps-curator-text">
+                  Best espresso on the east side, but go for the room. Big windows, plant wall, never plays bad music. Mornings are working laptops, afternoons are first dates. <strong>Order the cortado.</strong>
+                </div>
+              </div>
+
+              <div class="ps-mini-row">
+                <div class="ps-mini-card">
+                  <div class="ps-mini-card-label">Best Time</div>
+                  <div class="ps-mini-card-value"><em>10am</em></div>
+                </div>
+                <div class="ps-mini-card">
+                  <div class="ps-mini-card-label">Crowd</div>
+                  <div class="ps-mini-card-value">Locals</div>
+                </div>
+                <div class="ps-mini-card">
+                  <div class="ps-mini-card-label">Vibe</div>
+                  <div class="ps-mini-card-value">Slow · plants · laptops</div>
+                </div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab active"><span>●</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 04 · Place</div>
+        <div class="screen-caption">Not stars and reviews. A note from your curator. Best time, crowd, real vibe.</div>
+      </div>
+
+      <!-- ============ SCREEN 5: MATE PROFILE ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-mate-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-body" style="padding-top: 0;">
+              <div class="ps-mate-hero">
+                <div class="ps-mate-hero-row">
+                  <div class="ps-mate-avatar">J</div>
+                  <div class="ps-mate-info">
+                    <div class="ps-mate-name">Jamie <em>R.</em></div>
+                    <div class="ps-mate-bio">Born in St. Johns. Cook by trade. Knows every dive bar north of Burnside.</div>
+                    <div class="ps-mate-stats">
+                      <span><strong>34</strong> chats</span>
+                      <span><strong>5y</strong> certified</span>
+                      <span><strong>96%</strong> match</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ps-mate-badges">
+                  <div class="ps-badge primary">Food Local</div>
+                  <div class="ps-badge">Nightlife</div>
+                  <div class="ps-badge">Old Soul</div>
+                </div>
+              </div>
+
+              <div class="ps-mate-quote">
+                If you came here for the brunch line, I'll send you somewhere better. If you came for the rain, I'll teach you to love it.
+              </div>
+
+              <div class="ps-mate-section-label">Best for</div>
+              <div class="ps-place-info" style="margin-bottom: 8px;">
+                <span class="ps-place-info-chip">Dive bar tour</span>
+                <span class="ps-place-info-chip">Late-night food</span>
+                <span class="ps-place-info-chip">Cook's tips</span>
+              </div>
+
+              <div class="ps-mate-cta">
+                <div class="ps-mate-cta-text">Coffee chat<br/><span style="font-size:9px; opacity:0.85;">1 hour · this week</span></div>
+                <div class="ps-mate-cta-price">→</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab active"><span>●</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 05 · Mate</div>
+        <div class="screen-caption">A certified local. Badged by domain, not ranked by stars. One coffee, real talk.</div>
+      </div>
+
+      <!-- ============ SCREEN 6: QUEST / PROGRESS ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-quest-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-body" style="padding-top: 0;">
+              <div class="ps-quest-header-band">
+                <div class="ps-quest-eyebrow">Quest №04 · In Progress</div>
+                <div class="ps-quest-title">Survive a <em>Portland Winter</em></div>
+                <div class="ps-quest-meta">Started Nov 1 · 67 days in</div>
+                <div class="ps-quest-progress">
+                  <div class="ps-quest-progress-step done"></div>
+                  <div class="ps-quest-progress-step done"></div>
+                  <div class="ps-quest-progress-step done"></div>
+                  <div class="ps-quest-progress-step done"></div>
+                  <div class="ps-quest-progress-step current"></div>
+                  <div class="ps-quest-progress-step"></div>
+                  <div class="ps-quest-progress-step"></div>
+                </div>
+                <div class="ps-quest-progress-label">4 of 7 complete</div>
+              </div>
+
+              <div class="ps-quest-step done">
+                <div class="ps-quest-step-num">✓</div>
+                <div class="ps-quest-step-body">
+                  <div class="ps-quest-step-title">Walk a mile in rain, no umbrella</div>
+                  <div class="ps-quest-step-meta">Done · Nov 4</div>
+                </div>
+                <div class="ps-quest-step-points">+5</div>
+              </div>
+
+              <div class="ps-quest-step done">
+                <div class="ps-quest-step-num">✓</div>
+                <div class="ps-quest-step-body">
+                  <div class="ps-quest-step-title">Watch a Trail Blazers game at a bar</div>
+                  <div class="ps-quest-step-meta">Done · Nov 18</div>
+                </div>
+                <div class="ps-quest-step-points">+10</div>
+              </div>
+
+              <div class="ps-quest-step done">
+                <div class="ps-quest-step-num">✓</div>
+                <div class="ps-quest-step-body">
+                  <div class="ps-quest-step-title">Become a regular somewhere</div>
+                  <div class="ps-quest-step-meta">Done · Dec 5 · Either/Or</div>
+                </div>
+                <div class="ps-quest-step-points">+15</div>
+              </div>
+
+              <div class="ps-quest-step current">
+                <div class="ps-quest-step-num">5</div>
+                <div class="ps-quest-step-body">
+                  <div class="ps-quest-step-title">Hike Forest Park in fog</div>
+                  <div class="ps-quest-step-meta">In progress · Wildwood Trail</div>
+                </div>
+                <div class="ps-quest-step-points">+10</div>
+              </div>
+
+              <div class="ps-quest-step locked">
+                <div class="ps-quest-step-num">6</div>
+                <div class="ps-quest-step-body">
+                  <div class="ps-quest-step-title">Last a January without complaining</div>
+                  <div class="ps-quest-step-meta">Locked · until Jan 1</div>
+                </div>
+                <div class="ps-quest-step-points">+20</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab active"><span>●</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 06 · Quest</div>
+        <div class="screen-caption">Multi-month quests for civic depth. Locked steps. Real rewards. Real time.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PERSONA SECTION ============ -->
+<section class="persona-section">
+  <div class="container">
+    <div class="section-label"><span class="section-label-num">04</span> The Persona</div>
+    <h2 class="section-heading">Your app gets to know <em>you,</em> then plans the city around it.</h2>
+
+    <div class="persona-intro">
+      <p class="hero-tagline">
+        On install, an AI agent has a real conversation with you — your <em>taste</em>, your <em>mood</em>, your <em>purpose</em> for being here, your hobbies, what you avoid. It builds a profile that lives with you across every city. Then anywhere you go, you can <em>ask anything</em> in your own words — the agent already knows what you mean.
+      </p>
+      <div class="persona-pullquote">
+        Think <em>Gemini on Google Maps</em> — but the agent has been listening to you across cities, and it answers like a friend who knows your taste, not a search engine.
+        <span class="persona-pullquote-attr">— The Persona Layer</span>
+      </div>
+    </div>
+
+    <div class="persona-screens">
+
+      <!-- ============ SCREEN 7: ONBOARDING CHAT ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-chat-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">Meet <em>Basil</em></div>
+                <div class="ps-avatar" style="background: var(--plum);">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span style="color: var(--plum);">Setup · 3 of 8</span>
+                <span style="color: var(--plum);">~ 2 min left</span>
+              </div>
+            </div>
+            <div class="ps-body" style="display: flex; flex-direction: column;">
+              <div class="ps-agent-row">
+                <div class="ps-agent-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5z"/></svg>
+                </div>
+                <div class="ps-agent-name">
+                  <div class="ps-agent-name-main">Basil · your agent</div>
+                  <div class="ps-agent-name-sub">Learning you</div>
+                </div>
+              </div>
+
+              <div class="ps-bubble agent">Hey Likith! Quick chat before I tune Portland to you. What brings you here — is it <em>recharge</em>, <em>explore</em>, or <em>build a life</em>?</div>
+
+              <div class="ps-chip-options">
+                <span class="ps-chip-option">Recharge</span>
+                <span class="ps-chip-option selected">Build a life</span>
+                <span class="ps-chip-option">Explore</span>
+              </div>
+
+              <div class="ps-bubble user">Build a life. Just moved here.</div>
+
+              <div class="ps-bubble agent">Good — that changes everything. What does your <em>perfect Sunday</em> look like back home? I'll find Portland's version.</div>
+
+              <div class="ps-bubble user">Coffee, a long walk, a used bookstore, dinner with friends.</div>
+
+              <div class="ps-typing">
+                <span class="ps-typing-dot"></span>
+                <span class="ps-typing-dot"></span>
+                <span class="ps-typing-dot"></span>
+              </div>
+
+              <div class="ps-input-bar">
+                <span class="ps-input-bar-text">Type or speak…</span>
+                <div class="ps-input-mic">🎙</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab active"><span>●</span>Setup</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 07 · Meet Basil</div>
+        <div class="screen-caption">Not a quiz. A real conversation about taste, mood, and purpose. Voice or type.</div>
+      </div>
+
+      <!-- ============ SCREEN 8: PROFILE / MEMORY ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-profile-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-body" style="padding-top: 0;">
+              <div class="ps-profile-hero">
+                <div class="ps-profile-hero-row">
+                  <div class="ps-profile-avatar">L</div>
+                  <div class="ps-profile-info">
+                    <div class="ps-profile-name">Likith · <em>Your Persona</em></div>
+                    <div class="ps-profile-tagline">"Builder, slow mornings, dive bars over clubs."</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-trait-section">
+                <div class="ps-trait-label">Taste</div>
+                <div class="ps-trait-chips">
+                  <span class="ps-trait-chip taste">Specialty coffee</span>
+                  <span class="ps-trait-chip taste">Indie books</span>
+                  <span class="ps-trait-chip taste">Asian food</span>
+                  <span class="ps-trait-chip taste">Vinyl</span>
+                </div>
+              </div>
+
+              <div class="ps-trait-section">
+                <div class="ps-trait-label">Mood right now</div>
+                <div class="ps-trait-chips">
+                  <span class="ps-trait-chip mood">Settling in</span>
+                  <span class="ps-trait-chip mood">Open to chats</span>
+                </div>
+              </div>
+
+              <div class="ps-trait-section">
+                <div class="ps-trait-label">Purpose · Portland</div>
+                <div class="ps-trait-chips">
+                  <span class="ps-trait-chip purpose">Build a life</span>
+                  <span class="ps-trait-chip purpose">Find regulars</span>
+                </div>
+              </div>
+
+              <div class="ps-trait-section">
+                <div class="ps-trait-label">Hobbies</div>
+                <div class="ps-trait-chips">
+                  <span class="ps-trait-chip hobby">Cycling</span>
+                  <span class="ps-trait-chip hobby">Cooking</span>
+                  <span class="ps-trait-chip hobby">Investing</span>
+                </div>
+              </div>
+
+              <div class="ps-memory-card">
+                <div class="ps-memory-card-label">→ Basil remembers</div>
+                <div class="ps-memory-card-text">"You skipped 3 brewery picks. I'll lean toward bookstores and quiet cafés."</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab active"><span>●</span>You</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 08 · Your Persona</div>
+        <div class="screen-caption">A living profile. Taste, mood, purpose, hobbies — editable anytime. The agent remembers what you ignore.</div>
+      </div>
+
+      <!-- ============ SCREEN 9: ASK ANYTHING ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-ask-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">Ask <em>Basil</em></div>
+                <div class="ps-avatar" style="background: var(--plum);">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span>Portland</span>
+                <span>Persona on ●</span>
+              </div>
+            </div>
+            <div class="ps-body" style="display: flex; flex-direction: column;">
+              <div class="ps-ask-banner">
+                <div class="ps-ask-banner-row">
+                  <div class="ps-ask-icon">✦</div>
+                  <div>
+                    <div class="ps-ask-banner-text">Ask anything</div>
+                    <strong>Like a local friend would answer.</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-user-question">"Where do locals go on a rainy Tuesday afternoon?"</div>
+
+              <div class="ps-ask-thinking">Reading your persona…</div>
+
+              <div class="ps-ask-answer">
+                <div class="ps-ask-answer-intro">
+                  Since you like <strong>quiet cafés and bookstores</strong>, and it's Tuesday — skip the brunch spots, they're tourist-heavy. Three picks Basil would actually send you to:
+                </div>
+                <div class="ps-ask-result">
+                  <div class="ps-ask-result-icon">📚</div>
+                  <div class="ps-ask-result-body">
+                    <div class="ps-ask-result-title">Powell's, Blue Room</div>
+                    <div class="ps-ask-result-meta">10 min · 2nd floor · quietest</div>
+                  </div>
+                  <div class="ps-ask-result-match">98%</div>
+                </div>
+                <div class="ps-ask-result">
+                  <div class="ps-ask-result-icon" style="background: var(--tomato);">☕</div>
+                  <div class="ps-ask-result-body">
+                    <div class="ps-ask-result-title">Either/Or Coffee</div>
+                    <div class="ps-ask-result-meta">3 min · plant wall · cortado</div>
+                  </div>
+                  <div class="ps-ask-result-match">96%</div>
+                </div>
+                <div class="ps-ask-result">
+                  <div class="ps-ask-result-icon" style="background: var(--plum);">🎬</div>
+                  <div class="ps-ask-result-body">
+                    <div class="ps-ask-result-title">Hollywood Theatre</div>
+                    <div class="ps-ask-result-meta">2pm matinee · indie</div>
+                  </div>
+                  <div class="ps-ask-result-match">89%</div>
+                </div>
+              </div>
+
+              <div class="ps-input-bar">
+                <span class="ps-input-bar-text">Ask Basil anything…</span>
+                <div class="ps-input-mic">🎙</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab active"><span>●</span>Ask</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 09 · Ask Basil</div>
+        <div class="screen-caption">Ask anything in your own words. Inspired by Gemini-on-Maps, but tuned to <em>your</em> persona.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASSPORT SECTION ============ -->
+<section class="passport-section">
+  <div class="container">
+    <div class="section-label"><span class="section-label-num">05</span> The Passport</div>
+    <h2 class="section-heading">Your travels, <em>threaded.</em></h2>
+
+    <div class="passport-intro">
+      <p class="hero-tagline">
+        Every city you live into becomes a chapter you keep. Auto-stamped quests, Mate chats, places you returned to, dishes you loved &mdash; saved as a journal you'll re-read for years. <strong>Wishlist things from TikTok</strong> and they surface the moment you arrive somewhere they fit. Eat Indian food in Portland because someone said it was the best outside India? When you land in <em>Bangalore</em>, the app remembers.
+      </p>
+      <div class="persona-pullquote" style="background: var(--ocean);">
+        <em>"Most travel apps die when the trip ends."</em> Basics doesn't. The longer you use it, the more your cities start talking to each other. That's the unfair advantage.
+        <span class="persona-pullquote-attr" style="color: var(--marigold);">— Why Passport is the moat</span>
+      </div>
+    </div>
+
+    <div class="passport-screens">
+
+      <!-- ============ SCREEN 10: JOURNAL ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-journal-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-body" style="padding-top: 0;">
+              <div class="ps-passport-hero">
+                <span class="ps-passport-stamp">⌖ Stamped · Day 47</span>
+                <div class="ps-passport-cityname">Portland <em>Basics</em></div>
+                <div class="ps-passport-stats">
+                  <span><strong>23</strong>Places</span>
+                  <span><strong>4</strong>Quests</span>
+                  <span><strong>2</strong>Mates</span>
+                  <span><strong>18</strong>Memories</span>
+                </div>
+              </div>
+
+              <div class="ps-journal-date">Last Sunday · Dec 8</div>
+
+              <div class="ps-journal-entry">
+                <div class="ps-journal-icon quest">★</div>
+                <div class="ps-journal-body">
+                  <div class="ps-journal-title">Quest step: <em>Became a regular</em></div>
+                  <div class="ps-journal-meta">12th visit · Either/Or Coffee</div>
+                  <div class="ps-journal-note">Maya knew my order. Tipped a thing.</div>
+                </div>
+              </div>
+
+              <div class="ps-journal-entry">
+                <div class="ps-journal-icon food">🍛</div>
+                <div class="ps-journal-body">
+                  <div class="ps-journal-title">Bollywood Theater · NE Sandy</div>
+                  <div class="ps-journal-meta">Indian · Dosa, masala chai</div>
+                  <div class="ps-journal-note">Best dosa I've had outside India.</div>
+                </div>
+              </div>
+
+              <div class="ps-journal-date">Last Friday · Dec 6</div>
+
+              <div class="ps-journal-entry">
+                <div class="ps-journal-icon mate">M</div>
+                <div class="ps-journal-body">
+                  <div class="ps-journal-title">Coffee with <em>Jamie R.</em></div>
+                  <div class="ps-journal-meta">1h · St. Johns dive bar tour planned</div>
+                </div>
+              </div>
+
+              <div class="ps-journal-entry">
+                <div class="ps-journal-icon code">📖</div>
+                <div class="ps-journal-body">
+                  <div class="ps-journal-title">Learned: <em>Locals don't honk</em></div>
+                  <div class="ps-journal-meta">Code Rule №3 · streak +1</div>
+                </div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab active"><span>●</span>Passport</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 10 · Journal</div>
+        <div class="screen-caption">Every city auto-stamps your moments. Quests, places, Mate chats, code learned — stitched into a diary you keep.</div>
+      </div>
+
+      <!-- ============ SCREEN 11: CROSS-CITY THREADING ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-thread-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">Bangalore<br/><em>Basics</em></div>
+                <div class="ps-avatar" style="background: var(--ocean);">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span style="color: var(--ocean);">New chapter · Day 1</span>
+                <span style="color: var(--ocean);">28°C</span>
+              </div>
+            </div>
+            <div class="ps-body">
+              <div class="ps-thread-banner">
+                <div class="ps-thread-banner-eyebrow">✦ Basil remembers</div>
+                <div class="ps-thread-banner-title">Three things from <em>Portland</em> connect here.</div>
+              </div>
+
+              <div class="ps-thread-pair">
+                <div class="ps-thread-pair-conn"></div>
+                <div class="ps-thread-row">
+                  <div class="ps-thread-thumb then">🍛</div>
+                  <div class="ps-thread-info">
+                    <div class="ps-thread-label">Then · Portland · Dec 8</div>
+                    <div class="ps-thread-title">"Best dosa outside India."</div>
+                    <div class="ps-thread-meta">Bollywood Theater · your note</div>
+                  </div>
+                </div>
+                <div class="ps-thread-row">
+                  <div class="ps-thread-thumb now">★</div>
+                  <div class="ps-thread-info">
+                    <div class="ps-thread-label">Now · Bangalore</div>
+                    <div class="ps-thread-title"><em>Vidyarthi Bhavan</em></div>
+                    <div class="ps-thread-meta">The original. 4 min from your hotel.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-thread-pair">
+                <div class="ps-thread-pair-conn"></div>
+                <div class="ps-thread-row">
+                  <div class="ps-thread-thumb then">☕</div>
+                  <div class="ps-thread-info">
+                    <div class="ps-thread-label">Then · Portland</div>
+                    <div class="ps-thread-title">Either/Or — your regular</div>
+                  </div>
+                </div>
+                <div class="ps-thread-row">
+                  <div class="ps-thread-thumb now">☕</div>
+                  <div class="ps-thread-info">
+                    <div class="ps-thread-label">Now · Bangalore</div>
+                    <div class="ps-thread-title"><em>Third Wave</em>, Indiranagar</div>
+                    <div class="ps-thread-meta">Same vibe: plants, quiet, all-day work</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-thread-cta">
+                <div class="ps-thread-cta-text">Build today around these</div>
+                <div class="ps-thread-cta-arrow">→</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab active"><span>●</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab"><span>○</span>Passport</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 11 · Threading</div>
+        <div class="screen-caption">Land in a new city. Basil pulls memories forward. <em>That dosa you loved in Portland? The original is four blocks away.</em></div>
+      </div>
+
+      <!-- ============ SCREEN 12: WISHLIST ============ -->
+      <div class="screen-wrap">
+        <div class="phone">
+          <div class="phone-screen ps-wish-screen">
+            <div class="ps-bar"><span>9:41</span><span>5G ●●●</span></div>
+            <div class="ps-header">
+              <div class="ps-header-row">
+                <div class="ps-title">My <em>Wishlist</em></div>
+                <div class="ps-avatar" style="background: var(--hot-pink);">L</div>
+              </div>
+              <div class="ps-meta-strip">
+                <span style="color: var(--hot-pink);">47 saved · 6 cities</span>
+                <span style="color: var(--hot-pink);">3 near you</span>
+              </div>
+            </div>
+            <div class="ps-body">
+              <div class="ps-wish-tabs">
+                <div class="ps-wish-tab active">All<span class="ps-wish-tab-count">47</span></div>
+                <div class="ps-wish-tab">Food<span class="ps-wish-tab-count">18</span></div>
+                <div class="ps-wish-tab">Cafés<span class="ps-wish-tab-count">12</span></div>
+                <div class="ps-wish-tab">Spots</div>
+              </div>
+
+              <div class="ps-wish-alert">
+                <div class="ps-wish-alert-eyebrow">★ Near you · Lisbon</div>
+                <div class="ps-wish-alert-title">"That plant-wall café you saved 8 months ago — it's 4 blocks away."</div>
+                <div class="ps-wish-alert-sub">Hello, Kristof · Príncipe Real · opens at 10am</div>
+              </div>
+
+              <div class="ps-wish-card">
+                <div class="ps-wish-thumb cafe">☕</div>
+                <div class="ps-wish-body">
+                  <div class="ps-wish-title">Hello, Kristof</div>
+                  <div class="ps-wish-meta">
+                    <span class="ps-wish-source">TikTok</span>
+                    <span class="ps-wish-near">4 min away</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-wish-card">
+                <div class="ps-wish-thumb food">🍜</div>
+                <div class="ps-wish-body">
+                  <div class="ps-wish-title">Ichiran Ramen · Tokyo</div>
+                  <div class="ps-wish-meta">
+                    <span class="ps-wish-source">Instagram</span>
+                    <span>Saved Mar 2026</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-wish-card">
+                <div class="ps-wish-thumb spot">🌅</div>
+                <div class="ps-wish-body">
+                  <div class="ps-wish-title">Mt. Takao sunrise · Tokyo</div>
+                  <div class="ps-wish-meta">
+                    <span class="ps-wish-source">Reddit</span>
+                    <span>Saved Jul 2026</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ps-wish-add">
+                <span>Add from anywhere</span>
+                <div class="ps-wish-add-icon">+</div>
+              </div>
+            </div>
+            <div class="ps-tabbar">
+              <div class="ps-tab"><span>○</span>Today</div>
+              <div class="ps-tab"><span>○</span>Code</div>
+              <div class="ps-tab"><span>○</span>Map</div>
+              <div class="ps-tab"><span>○</span>Mates</div>
+              <div class="ps-tab active"><span>●</span>Passport</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">№ 12 · Wishlist</div>
+        <div class="screen-caption">Save things from TikTok, Instagram, Reddit. The app surfaces them when you arrive — or finds the local version.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="editorial compare-section">
+  <div class="container">
+    <div class="section-label"><span class="section-label-num">06</span> The Position</div>
+    <h2 class="section-heading">Nobody is closing this <em>loop.</em></h2>
+
+    <p class="hero-tagline" style="margin-bottom: 40px; max-width: 720px;">
+      The hardest column to win is the last one. <strong>Cross-city memory only works if you've used the app in multiple cities.</strong> No competitor has the architecture to even attempt it. That's our moat.
+    </p>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Local<br/>content</th>
+            <th>Code +<br/>Blend</th>
+            <th>Persona<br/>AI</th>
+            <th>Real<br/>locals</th>
+            <th>Wishlist<br/>intake</th>
+            <th>Cross-city<br/>memory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Google Maps</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot partial"></span></td><td><span class="dot"></span></td><td><span class="dot partial"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Spotted by Locals</td><td><span class="dot yes"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Withlocals</td><td><span class="dot partial"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot yes"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Polarsteps</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot partial"></span></td></tr>
+          <tr><td>Day One / Photos</td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>TripAdvisor</td><td><span class="dot partial"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr class="us"><td>Basics</td><td><span class="dot yes"></span></td><td><span class="dot yes"></span></td><td><span class="dot yes"></span></td><td><span class="dot yes"></span></td><td><span class="dot yes"></span></td><td><span class="dot yes"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="compare-legend">
+      <span><span class="legend-dot" style="background: var(--tomato);"></span>Full</span>
+      <span><span class="legend-dot" style="background: var(--marigold); border: 2px solid var(--terra);"></span>Partial</span>
+      <span><span class="legend-dot" style="background: var(--rule);"></span>None</span>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="close-bg-text">Basics</div>
+  <div class="container">
+    <div class="close-grid">
+      <div>
+        <div class="section-label" style="color: var(--marigold);"><span class="section-label-num" style="background: var(--marigold); color: var(--ink);">07</span> Now building</div>
+        <h2 class="close-title">Start with <em>Portland.</em><br/>Do it deeply.</h2>
+        <p class="close-body">
+          The first version of <em>Portland Basics</em> is being built now for iPhone: a map-first home, The Code, The Blend and Civic Mates. <em>One city, done right,</em> then the next chapter. New to Portland, a long-time local who'd make a great Civic Mate, or just curious? Say hello.
+        </p>
+        <div class="close-actions">
+          <a href="prototype.html" class="btn btn-primary">Try the prototype →</a>
+          <a href="mailto:hello@getbasics.app?subject=Hello%20Basics" class="btn btn-ghost">hello@getbasics.app</a>
+        </div>
+      </div>
+
+      <div class="close-side">
+        <div class="close-side-header">
+          <span class="close-side-label">Version 0.1</span>
+          <span class="close-side-badge">Portland</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">Places</span>
+          <span class="close-side-item-detail"><strong>15</strong>curated pins</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">Code cards</span>
+          <span class="close-side-item-detail"><strong>30</strong>unwritten rules</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">The Blend</span>
+          <span class="close-side-item-detail"><strong>20</strong>wear · speak · gesture</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">Sound</span>
+          <span class="close-side-item-detail"><strong>4</strong>weeks of tracks</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">Civic Mates</span>
+          <span class="close-side-item-detail"><strong>5–10</strong>first locals</span>
+        </div>
+        <div class="close-side-item">
+          <span class="close-side-item-name">Platform</span>
+          <span class="close-side-item-detail"><strong>iPhone</strong>first</span>
+        </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span>&copy; 2026 Basics &middot; Portland, OR &middot; <a href="mailto:hello@getbasics.app" style="color: inherit;">hello@getbasics.app</a></span>
+      <span style="color: var(--marigold);">Get the Basics, know the Civics.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
