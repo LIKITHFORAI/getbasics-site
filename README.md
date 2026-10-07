@@ -8,3 +8,5 @@ A city app for people staying long enough that they don't want to feel like tour
 - Hosted on GitHub Pages at https://getbasics.app (`CNAME`)
 
 Contact: hello@getbasics.app
+
+© 2026 GetBasics. All rights reserved. See LICENSE.
