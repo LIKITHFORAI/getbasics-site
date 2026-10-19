@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FAF3E0">
 <meta name="color-scheme" content="light">
+<!-- installable / full-screen when added to the home screen -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Basics">
+<meta name="format-detection" content="telephone=no">
 <meta name="robots" content="noindex, nofollow">
 <title>Basics App Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -332,7 +341,10 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rain);outl
 
 /* ---------- small screens: app fills the screen ---------- */
 @media (max-width:500px){
-  body{background:var(--cream)}
+  /* feel like an app, not a web page: no rubber-band scroll, zoom, text selection or long-press callouts */
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none;background:var(--cream);touch-action:manipulation}
+  body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+  .screen{overscroll-behavior:contain}
   .stage{padding:0;display:block;min-height:0}
   .phone{width:100%;height:100vh;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none}
   .caption,.statusbar{display:none}
@@ -342,6 +354,13 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rain);outl
   .m-city,.m-basics{font-size:min(68px,17vw)}
   .est{width:70px;height:70px;font-size:8.5px}
 }
+/* one-time "Add to Home Screen" tip (iPhone Safari only, hidden once installed) */
+.install{display:none;position:fixed;left:12px;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:80;align-items:center;gap:10px;padding:10px 12px;background:var(--ink);color:var(--cream);border-radius:16px;box-shadow:4px 4px 0 var(--marigold);font:600 13px/1.35 var(--sans)}
+.install.show{display:flex}
+.install img{width:36px;height:36px;border-radius:9px;flex:none}
+.install p{margin:0;flex:1}
+.install b{color:var(--marigold)}
+.install button{flex:none;width:30px;height:30px;border-radius:50%;color:var(--cream);font:700 18px/1 var(--sans)}
 @media (max-width:360px){.entries{grid-template-columns:1fr 1fr}.entry:nth-child(3){grid-column:span 2;min-height:0}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;animation-delay:0s!important}
@@ -668,9 +687,28 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rain);outl
   </div>
  </div>
  <p class="caption">Basics · v0.1 UI prototype · tap around</p>
+ <div class="install" id="install" role="note">
+  <img src="icons/apple-touch-icon.png" alt="">
+  <p>Use it like an app: tap <b>Share</b>, then <b>Add to Home Screen</b>.</p>
+  <button type="button" id="install-x" aria-label="Dismiss">×</button>
+ </div>
  <p class="caption">© 2026 GetBasics · All rights reserved · <a href="index.html" style="color:inherit">getbasics.app</a></p>
 </div>
 
+<script>
+// Install tip: only on iPhone/iPad Safari, not when already opened from the home screen, and only until dismissed.
+(function(){
+  var tip=document.getElementById("install"), KEY="basics-install-tip";
+  var ios=/iPhone|iPad|iPod/.test(navigator.userAgent);
+  var standalone=window.navigator.standalone===true||matchMedia("(display-mode: standalone)").matches;
+  var seen=false; try{seen=localStorage.getItem(KEY)==="1"}catch(e){}
+  if(!ios||standalone||seen||innerWidth>500) return;
+  setTimeout(function(){tip.classList.add("show")},2500);
+  document.getElementById("install-x").addEventListener("click",function(){
+    tip.classList.remove("show"); try{localStorage.setItem(KEY,"1")}catch(e){}
+  });
+})();
+</script>
 <script>
 (function(){
 "use strict";
