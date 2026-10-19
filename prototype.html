@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF3E0">
+<meta name="color-scheme" content="light">
 <meta name="robots" content="noindex, nofollow">
 <title>Basics App Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -329,7 +336,9 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rain);outl
   .stage{padding:0;display:block;min-height:0}
   .phone{width:100%;height:100vh;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none}
   .caption,.statusbar{display:none}
+  .app{padding-top:env(safe-area-inset-top)}
   .tabbar{padding-bottom:max(14px,env(safe-area-inset-bottom))}
+  .sheet{padding-bottom:max(26px,calc(env(safe-area-inset-bottom) + 12px))}
   .m-city,.m-basics{font-size:min(68px,17vw)}
   .est{width:70px;height:70px;font-size:8.5px}
 }
@@ -394,6 +403,8 @@ button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--rain);outl
 @media (max-width:360px){.m2-city,.m2-basics{font-size:25px}.m2-stamp{display:none}}
 @media (prefers-reduced-motion:reduce){.sound-drawer{transition:none}}
 </style>
+</head>
+<body>
 
 <!-- icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1116,3 +1127,5 @@ window.addEventListener("resize",function(){refitMap(false)});
 requestAnimationFrame(function(){refitMap(true)});
 })();
 </script>
+</body>
+</html>
